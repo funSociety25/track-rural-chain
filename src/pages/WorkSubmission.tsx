@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Upload, MapPin, DollarSign } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 const WorkSubmission = () => {
+  const { projectId } = useParams();
   const [formData, setFormData] = useState({
     description: "",
     amount: "",
@@ -58,12 +61,16 @@ const WorkSubmission = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="p-6">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center space-x-4 mb-6">
-          <Button variant="outline" size="sm">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Project
+          <Button variant="outline" size="sm" asChild>
+            <Link to={`/project/${projectId}`}>
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Project
+            </Link>
           </Button>
         </div>
 
@@ -222,6 +229,7 @@ const WorkSubmission = () => {
             </form>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   );

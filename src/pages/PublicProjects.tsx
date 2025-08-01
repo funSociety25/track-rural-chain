@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, MapPin, DollarSign, Calendar, Filter } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 const PublicProjects = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -80,8 +82,10 @@ const PublicProjects = () => {
   const statuses = [...new Set(projects.map(p => p.status))];
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="p-6">
+        <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Rural Development Projects</h1>
           <p className="text-muted-foreground">
@@ -233,8 +237,8 @@ const PublicProjects = () => {
                     <span className="text-sm text-muted-foreground">
                       by {project.ngo}
                     </span>
-                    <Button variant="outline" size="sm">
-                      View Details
+                    <Button variant="outline" size="sm" asChild>
+                      <Link to={`/project/${project.id}`}>View Details</Link>
                     </Button>
                   </div>
                 </div>
@@ -261,6 +265,7 @@ const PublicProjects = () => {
             </CardContent>
           </Card>
         )}
+        </div>
       </div>
     </div>
   );

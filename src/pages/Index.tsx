@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Shield, Eye, Users, TrendingUp } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 const Index = () => {
   const stats = [
@@ -34,6 +36,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-background">
         <div className="max-w-7xl mx-auto px-6 py-16">
@@ -48,13 +51,17 @@ const Index = () => {
               Monitor project progress, verify fund allocation, and ensure accountability in rural development initiatives
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Button size="lg" className="text-lg">
-                Browse Projects
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" className="text-lg" asChild>
+                <Link to="/projects">
+                  Browse Projects
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg">
-                <Shield className="mr-2 h-5 w-5" />
-                Login / Register
+              <Button size="lg" variant="outline" className="text-lg" asChild>
+                <Link to="/auth">
+                  <Shield className="mr-2 h-5 w-5" />
+                  Login / Register
+                </Link>
               </Button>
             </div>
           </div>
@@ -85,9 +92,11 @@ const Index = () => {
                 <CardTitle className="text-2xl">Recent Projects</CardTitle>
                 <CardDescription>Latest rural development initiatives</CardDescription>
               </div>
-              <Button variant="outline">
-                <Eye className="mr-2 h-4 w-4" />
-                View All
+              <Button variant="outline" asChild>
+                <Link to="/projects">
+                  <Eye className="mr-2 h-4 w-4" />
+                  View All
+                </Link>
               </Button>
             </div>
           </CardHeader>
@@ -109,7 +118,9 @@ const Index = () => {
                       </Badge>
                       <p className="text-sm text-muted-foreground mt-1">{project.completion}% complete</p>
                     </div>
-                    <Button variant="outline" size="sm">View</Button>
+                    <Button variant="outline" size="sm" asChild>
+                      <Link to={`/project/${index + 1}`}>View</Link>
+                    </Button>
                   </div>
                 </div>
               ))}

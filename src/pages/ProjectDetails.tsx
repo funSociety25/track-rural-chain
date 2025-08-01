@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, MapPin, DollarSign, Calendar, User, Camera, CheckCircle } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 const ProjectDetails = () => {
   const [project] = useState({
@@ -54,7 +56,9 @@ const ProjectDetails = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="p-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center space-x-4 mb-6">
           <Button variant="outline" size="sm">
@@ -195,15 +199,15 @@ const ProjectDetails = () => {
                         </div>
                         <div className="space-x-2">
                           <Button variant="outline" size="sm">View Photos</Button>
-                          {update.status === "pending" && (
-                            <>
-                              <Button variant="outline" size="sm">Reject</Button>
-                              <Button size="sm">Approve</Button>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
+                           {update.status === "pending" && (
+                             <>
+                               <Button variant="outline" size="sm">Reject</Button>
+                               <Button size="sm">Approve</Button>
+                             </>
+                           )}
+                         </div>
+                       </div>
+                     </div>
                   ))}
                 </div>
               </CardContent>
@@ -283,6 +287,7 @@ const ProjectDetails = () => {
             </Card>
           </TabsContent>
         </Tabs>
+        </div>
       </div>
     </div>
   );

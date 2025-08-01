@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft } from "lucide-react";
+import Navigation from "@/components/Navigation";
 
 const CreateProject = () => {
   const [formData, setFormData] = useState({
@@ -25,12 +27,16 @@ const CreateProject = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="p-6">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center space-x-4 mb-6">
-          <Button variant="outline" size="sm">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Dashboard
+          <Button variant="outline" size="sm" asChild>
+            <Link to="/dashboard">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Dashboard
+            </Link>
           </Button>
         </div>
 
@@ -140,6 +146,7 @@ const CreateProject = () => {
             </form>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   );
